@@ -1,6 +1,9 @@
 import java.net.MalformedURLException;
+import java.rmi.AlreadyBoundException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +12,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServices {
     PersonList person_list = new PersonList();
 
     protected RMIServer() throws RemoteException {
+        super(1103);//questa è la porta assegnata del prof
     }
 
     public void Otherstuff() {
@@ -62,11 +66,13 @@ public class RMIServer extends UnicastRemoteObject implements RMIServices {
     public static void main(String args[]) {
         try {
             RMIServices services = new RMIServer();
-            Naming.rebind("listserver",services);
+            //Naming.rebind("listserver",services);
+            System.setProperty("java.rmi.server.hostname","whitelodge.ns0.it");
+            Registry registry = LocateRegistry.getRegistry();
+            registry.rebind("rmiservices",services);
         } catch (RemoteException e) {
             e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         }
+
     }
 }
