@@ -16,7 +16,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     public Server() throws RemoteException {
         // if not local, specify YOUR PORT avoid random assignation
-        super(7500);
+        super(1103);
     }
 
     public static void main(String[] args){
