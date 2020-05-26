@@ -69,9 +69,9 @@ public class RMIServer extends UnicastRemoteObject implements RMIServices {
             //// if not localhost
             System.setProperty("java.rmi.server.hostname","whitelodge.ns0.it");
             Registry registry = LocateRegistry.getRegistry();
-
+            // services deve andare sempre dopo aver settato le proprietà del registro
             RMIServices services = new RMIServer();
-            registry.bind("server",services);
+            registry.bind("rmiserver",services);
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (AlreadyBoundException e) {
