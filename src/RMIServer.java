@@ -12,7 +12,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServices {
     PersonList person_list = new PersonList();
 
     protected RMIServer() throws RemoteException {
-        super(7500);//questa è la porta assegnata del prof
+        super(1103);//questa è la porta assegnata del prof
     }
 
     public void Otherstuff() {
